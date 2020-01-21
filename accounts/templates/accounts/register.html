@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row justify-content-md-center">
+<div class="pd-3 col-lg-8 m-3 ">
+<form method="post">{% csrf_token %}
+  <h1 class="h3 mb-3 font-weight-normal text-center">Register</h1>
+    <div class="row m-2">
+        <div class="col mr-2 p-0">
+            <input type="text" class="form-control" name="first_name" placeholder="First name" required autofocus>
+        </div>
+        <div class="col ml-2 p-0">
+            <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+        </div>
+    </div>
+    <div class="m-2">
+        <input type="text" name="username" class="form-control" placeholder="Username" required>
+    </div>
+    <div class="m-2">
+        <input type="email" name="email" class="form-control" placeholder="Email address" required>
+    </div>
+    <div class="m-2">
+      <input type="password" name="password1" class="form-control" placeholder="Password" required>
+    </div>
+    <div class="m-2">
+      <input type="password" name="password2" class="form-control" placeholder="Confirm Password" required>
+    </div>
+  
+    {% for field in registeration_form %}
+        {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+    {% endfor %}
+
+    {% if registeration_form.non_field_errors %}
+        <div style="color: red">{{registeration_form.non_field_errors}}</div>
+    {% endif %}
+    
+    <div class="m-2">
+        <button class="btn btn-lg btn-success btn-block " type="submit">Register</button>
+    </div>
+</form>
+
+</div>
+</div>
+
+{% endblock content %}

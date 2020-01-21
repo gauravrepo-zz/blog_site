@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row justify-content-md-center">
+<div class="pd-3 col-lg-6 m-3 ">
+<form method="post">{% csrf_token %}
+  <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
+  <div class="m-2">
+    <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+  </div>
+  <div class="m-2">
+    <input type="password" name="password" class="form-control" placeholder="Password" required>
+  </div>
+
+  {% for field in login_form %}
+    {% for error in field.errors %}
+      <p style="color: red">{{ error }}</p>
+    {% endfor %}
+  {% endfor %}
+
+  {% if login_form.non_field_errors %}
+    <div style="color: red">{{login_form.non_field_errors}}</div>
+  {% endif %}
+  <div class="m-2">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+  </div>
+</form>
+
+</div>
+</div>
+
+{% endblock content %}

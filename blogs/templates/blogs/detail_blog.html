@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="p-2 m-2 ">
+	    <div class="p-2 mr-auto row-5 ">
+			<img src="{{blog.main_image.url}}">
+		</div>
+		<div class="p-2 mr-auto ">
+			<h3 align="center">{{blog.title}}</h3>
+			<p align="center">{{blog.body}}</p>
+		</div>
+	</div>
+	<div class="mr-3 d-flex justify-content-end">
+		<p>Updated {{ blog.date_updated}} by {{blog.author.first_name}}</p>
+	</div>
+</div>
+
+{% endblock content %}

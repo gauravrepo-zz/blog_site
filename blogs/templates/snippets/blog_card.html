@@ -1,0 +1,37 @@
+<style type="text/css">
+.card-custom {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;
+}
+
+.card-custom:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+a {
+	text-decoration: none;
+}
+
+</style>
+<div class="col-lg-4 col-md-6 m-2 pd-2 ">
+	<div class="card-custom text-center">
+	    <a href="{% url 'detail_blog' blog.slug %}">
+		<img class="rounded mx-auto d-block" src="{{blog.thumb_image.url}}">
+		</a>		
+		<div class="pd-2 m-auto ">
+			<h3>{{blog.title}}</h3>
+		</div>
+		<p class=" text-break" >{{blog.body|truncatechars:255}}</p>
+		
+	<div class="p-2 m-auto d-flex justify-content-center">
+		<a class="btn btn-success" href="{% url 'detail_blog' blog.slug %}">Read More</a>
+	</div>
+	<div class="m-1 p-2 d-flex justify-content-end">
+		<p>Updated {{ blog.date_updated}} by {{blog.author.first_name}}</p>
+	</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="text-center mt-5">Personal Blog site</h3>
+<div class="row">
+    {% for blog in blogs %}
+    {% include 'snippets/blog_card.html' %}
+    {% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'snippets/navbar.html' %}  
+    {% include 'snippets/header.html' %}
+    <title>Blog Site</title>
+  </head>
+  <style type="text/css">
+	.main{
+		min-height: 100vh;
+		height: 100%;
+    width: 80%;
+	}
+  </style>
+  <body>
+    <div class="main m-auto">
+      {% block content %}
+
+      {% endblock content %}
+    </div>
+  </body>
+
+  <footer>
+    {% include 'snippets/footer.html' %}  
+  </footer>
+ 
+  
+</html>

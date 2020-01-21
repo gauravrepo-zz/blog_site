@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+<div class="pd-3 col-lg-8 m-3 ">
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+  <h1 class="h3 mb-3 font-weight-normal text-center">Update your Blog</h1>
+  <div class="m-2">
+    <input type="text" name="title" class="form-control" placeholder="Title" value={{blog.title}} required autofocus>
+  </div>
+  <div class="m-2">
+    <textarea name="body" class="form-control" placeholder="Post body" rows="10" required>{{blog.body}}</textarea>
+  </div>
+  <div class="m-2 custom-file">
+    <input type="file" name="image" accept="image/*" class="custom-file-input" id="feature_image" onChange="readURL(this)">
+    <label class="custom-file-label" for="feature_image">Add feature image</label>
+  </div>
+  <div class="form-group image-group m-2" id="id_image_group">
+    <img class="img-fluid image" src="{{form.initial.image.url}}" id="id_image_display">
+	</div>
+
+  {% for field in blog_form %}
+    {% for error in field.errors %}
+      <p style="color: red">{{ error }}</p>
+    {% endfor %}
+  {% endfor %}
+
+  {% if blog_form.non_field_errors %}
+    <div style="color: red">{{blog_form.non_field_errors}}</div>
+  {% endif %}
+  {{blog_form.is_draft}}
+  <div class="row m-2">
+    <input class="btn btn-lg btn-primary btn-block" type="submit" name="save_draft" value="Save Draft" />
+    <input class="btn btn-lg btn-success btn-block" type="submit" name="publish" value="Publish" />
+  </div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+	document.getElementById('id_image_group').onclick = function(event){
+    	document.getElementById('feature_image').click();
+    };
+	function readURL(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+</script>
+{% endblock content %}

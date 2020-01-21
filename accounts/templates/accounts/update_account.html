@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row justify-content-md-center">
+<div class="pd-3 col-lg-8 m-3 ">
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+  <h1 class="h3 mb-3 font-weight-normal text-center">Update Account</h1>
+    <div class="m-2">
+        <input type="email" class="form-control" placeholder="{{user.email}}" readonly>
+    </div>
+    <div class="row m-2">
+        <div class="col mr-2 p-0">
+            <input type="text" class="form-control" name="first_name" placeholder="First name" value={{user.first_name}} required autofocus>
+        </div>
+        <div class="col ml-2 p-0">
+            <input type="text" class="form-control" name="last_name" placeholder="Last name" value={{user.last_name}} required>
+        </div>
+    </div>
+    <div class="m-2">
+        <input type="text" name="username" class="form-control" placeholder="Username" value={{user.username}} required>
+    </div>
+    
+    <div class="m-2 custom-file">
+      <input type="file" name="image" class="custom-file-input" id="profile_image">
+      <label class="custom-file-label" for="profile_image">Change Profile image</label>
+    </div>
+    
+    {% for field in accountupdate_form %}
+        {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+    {% endfor %}
+
+    {% if accountupdate_form.non_field_errors %}
+        <div style="color: red">{{accountupdate_form.non_field_errors}}</div>
+    {% endif %}
+    
+    <div class="m-2">
+        <button class="btn btn-lg btn-success btn-block " type="submit">Update</button>
+    </div>
+</form>
+
+</div>
+</div>
+
+{% endblock content %}

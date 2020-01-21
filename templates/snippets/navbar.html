@@ -1,0 +1,24 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" >
+  <a class="navbar-brand" href="{% url 'home' %}">Blog Site</a>
+  <div class="navbar-nav ml-auto">
+    {% if user.is_authenticated %}
+      {% if user.image %}
+      <li class="nav-item ">
+        <img class="mr-2" style="border-radius:50%;" src="{{ user.avatar.url }}" height="42" width="42" alt="Display image">
+      </li>
+      {% else %}
+      <li class="nav-item ">
+        <img src="{% static 'default_avatar.jpg'%}" height="42" width="42" alt="Display image">
+      </li>
+      {% endif %}
+      <a class="nav-link nav-item" href="{% url 'home'%}">Hi, {{user.first_name}}</a>
+      <a class="nav-item nav-link" href="{% url 'update' %}">Edit Account</a>
+      <a class="nav-item nav-link" href="{% url 'my_blogs' %}">My Blogs</a>
+      <a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a>
+    {% else %}
+      <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+      <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </div>
+</nav>
